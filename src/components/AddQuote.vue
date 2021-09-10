@@ -68,7 +68,7 @@
         v-model="checkbox"
         color="brown darken-1"
 
-        :label="`Праздник`"git remote -v
+        :label="`Праздник`"
     ></v-checkbox>
 
   </div>
