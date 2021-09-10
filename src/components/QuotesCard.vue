@@ -1,64 +1,65 @@
 <template>
-  <div>
-    123
+  <div class="quotesCard" id="app">
+
+      <v-card
+          class="mx-auto my-12"
+          max-width="90%"
+      >
+
+        <v-card-title>{{ quotesData.name }}</v-card-title>
+
+        <v-card-text>
+          <div>{{ quotesData.text}}</div>
+        </v-card-text>
+
+        <v-divider class="mx-4"></v-divider>
+        <v-card-text>
+          <v-chip-group
+              active-class="deep-purple accent-4 white--text"
+              column
+              multiple
+
+          >
+              <v-chip close
+                      color="#7a7a7a"
+                      small
+                      outlined v-for="tag in quotesData.tags " :key="tag">
+                {{ tag}}
+              </v-chip>
+
+
+          </v-chip-group>
+          <div class="date">{{date}}</div>
+        </v-card-text>
+
+      </v-card>
+
   </div>
 </template>
 
 <script>
   export default {
-    name: 'HelloWorld',
+    name: "QuotesCard",
 
-    data: () => ({
-      ecosystem: [
-        {
-          text: 'vuetify-loader',
-          href: 'https://github.com/vuetifyjs/vuetify-loader',
-        },
-        {
-          text: 'github',
-          href: 'https://github.com/vuetifyjs/vuetify',
-        },
-        {
-          text: 'awesome-vuetify',
-          href: 'https://github.com/vuetifyjs/awesome-vuetify',
-        },
-      ],
-      importantLinks: [
-        {
-          text: 'Documentation',
-          href: 'https://vuetifyjs.com',
-        },
-        {
-          text: 'Chat',
-          href: 'https://community.vuetifyjs.com',
-        },
-        {
-          text: 'Made with Vuetify',
-          href: 'https://madewithvuejs.com/vuetify',
-        },
-        {
-          text: 'Twitter',
-          href: 'https://twitter.com/vuetifyjs',
-        },
-        {
-          text: 'Articles',
-          href: 'https://medium.com/vuetify',
-        },
-      ],
-      whatsNext: [
-        {
-          text: 'Explore components',
-          href: 'https://vuetifyjs.com/components/api-explorer',
-        },
-        {
-          text: 'Select a layout',
-          href: 'https://vuetifyjs.com/getting-started/pre-made-layouts',
-        },
-        {
-          text: 'Frequently Asked Questions',
-          href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions',
-        },
-      ],
-    }),
+    props: {
+      quotesData: {
+        type: Object,
+        default() {
+          return {}
+        }
+      }
+    },
+    computed: {
+      date: function() {
+        const date = new Date(Date.parse(this.quotesData.created_at));
+        console.log(date)
+        return date.toLocaleDateString("en-US");
+      }
+    }
   }
 </script>
+
+<style scoped>
+
+
+</style>
